@@ -1,6 +1,10 @@
 var nodesFormat = '[';
 let reactionArray = [];
 var cyFormat = '';
+var nodesFormat = "";
+var edgesFormat = "";
+let edgesArray = [];
+
 
 var testcyto =  
 [
