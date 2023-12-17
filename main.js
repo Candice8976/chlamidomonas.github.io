@@ -240,3 +240,18 @@ btn.addEventListener('click', () => {
       console.log('Error downloading image: ', err);
     });
 });
+
+var neighbor;
+function selection(){
+  cy.on('tap', 'node', function(e) {
+    var node = e.cyTarget;
+    var directlyConnected = node.neighborhood();
+    neighbor=directlyConnected.nodes().addClass('connectednodes');
+    neighbor.addClass('highlight');
+    return neighbor;
+
+});
+}
+select.addEventListener('click',()=>{
+  selection();
+});
