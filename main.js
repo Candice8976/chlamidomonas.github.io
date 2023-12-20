@@ -136,27 +136,34 @@ function createEdges(reactionArray)
     }
     return cyFormat;
 }
+function fetchDataAndProcessData() {
+  const input = document.querySelector('#UploadFile');
+  // Réinitialiser cyFormat
+  cyFormat = '';
+  // Vérifier si un fichier est sélectionné
+  if (input.files.length > 0) {
+      const selectedFile = input.files[0];
+      const reader = new FileReader();
 
-function fetchDataAndProcessData() 
-{
-    const file = new XMLHttpRequest();
-    file.open('GET', 'test.csv', false); 
-    file.send(null);
-    if (file.status === 200) 
-    {
-        const data = file.responseText;
-        const result = processData(data);
-        return result;
-    } 
-    else 
-    {
-        console.error('Failed to fetch data');
-    }
+      // Fonction de rappel appelée lorsque la lecture est terminée
+      reader.onload = function(event) {
+          const data = event.target.result;
+
+          // Appeler la fonction processData avec le contenu du fichier
+          const result = processData(data);
+          // Mettre à jour le graphe avec les nouveaux éléments
+          updateGraphWithElements(result);
+          console.log('Résultat du traitement des données :', result);
+      };
+
+      // Lire le contenu du fichier en tant que texte
+      reader.readAsText(selectedFile);
+  } else {
+      console.error('Aucun fichier sélectionné');
+  }
 }
 
-cyFormat = fetchDataAndProcessData() + ']';
-console.log(cyFormat);
-//var parsedcyFormat= JSON.parse(cyFormat);
+input.addEventListener('change', fetchDataAndProcessData);
 
 
 //////////////////////////////////////////////
