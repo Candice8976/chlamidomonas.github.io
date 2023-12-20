@@ -136,6 +136,13 @@ function createEdges(reactionArray)
     }
     return cyFormat;
 }
+
+function updateGraphWithElements(elements) {
+  cy.elements().remove(); // Supprimer les anciens éléments
+  cy.add(elements); // Ajouter les nouveaux éléments
+   // Appliquer le layout
+}
+
 function fetchDataAndProcessData() {
   const input = document.querySelector('#UploadFile');
   // Réinitialiser cyFormat
