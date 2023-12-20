@@ -106,7 +106,7 @@ function createNodes(reactionArray)
     }
     cyFormat += nodesFormat
     return cyFormat;
-}
+} 
 
 function createEdges(reactionArray)
 {
